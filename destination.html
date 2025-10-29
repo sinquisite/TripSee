@@ -1,16 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="imgs/logobl.png">
-  <title>TripSee</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TripSee</title>
+    <link rel="icon" type="image/x-icon" href="imgs/logobl.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="design_destinations.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+    
+    <header>
+
+    <div class="logo-container">
+        <a href="index.html"><img src="imgs/logobw.png" alt="Logo"></a>
+        <h1>TripSee</h1>
+    </div>
+
+    
+    
+    <div class="navbar">
+        <a href="index.html" id="homenaw"><img src="imgs/homew.png" alt="Home"></a>
+        <a href="booking.html" id="booknaw"><img src="imgs/searchw.png" alt="Book"></a>
+        <a href="destination.html" id="savenaw"><img src="imgs/savew.png" alt="Saved"></a>
+    </div>
+
+    <div class="btns">
+        <button id="darkmode"><img src="imgs/moonb.png" alt="Dark"></button>
+        <div class="hamburger1">
+
+            <button id="act_hamb"><img src="imgs/menub.png" alt="Menu"></button>
+        
+        </div>
+        <button id="login"><img src="imgs/loginb.png" alt="Login"><p>Log In</p></button>
+        <button id="signup"><img src="imgs/signupw.png" alt="Signup"><p>Sign Up</p></button>
+    </div>
+
+    </header>
+
+    <main>
+
+        <div class="bg-hamb">
+            <div class="hamb_nav">
+
+                <div><a href="index.html" id="althome"><img src="imgs/homeb.png" alt="Home" >Home</a></div>
+                <div><a href="booking.html" id="altbook"><img src="imgs/searchb.png" alt="Search" >Booking</a></div>
+                <div><a href="destination.html" id="altloc"><img src="imgs/saveb.png" alt="Save" >Locations</a></div>
+
+            </div>
+        </div>
+
+        <div class="hamb_underbtns">
+            <button id="login_under"><img src="imgs/loginb.png" alt="Login"><p>Log In</p></button>
+            <button id="signup_under"><img src="imgs/signupw.png" alt="Signup"><p>Sign Up</p></button>
+        </div>
+
+        <div class="loginboxShadow">
+
+            <div class="loginbox">
+                
+                <button id="loginClosebtn"><img src="imgs/closeb.png" alt="Closebtn"></button>
+
+                <span class="spantext">Welcome to TripSee</span>
+
+                <div class="email">
+                    <div class="emailcenter"><p>Email</p><img src="imgs/profileb.png" alt="Profile"></div>
+                    <input type="email" placeholder="Enter your email" maxlength="20" required>
+                </div>
+                <div class="pass">
+                    <div class="passcenter"><p>Password</p><img src="imgs/lockb.png" alt="Lock"></div>
+                    <input type="password" placeholder="Enter your password" maxlength="20" required>
+                </div>
+
+                <div class="checkNpass">
+                    <div class="rememberMe"><input type="checkbox"><span>Remember me</span></div><a href="">Forgot Password?</a>
+                </div>
+
+                <div class="requestLogin">
+                    <input type="submit" value="Log In">
+                </div>
+
+                <div class="signupINlog">
+                    <span>Don't have an account?</span><a href="#">Register</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="signupboxShadow">
+            
+            <div class="signupbox">
+                
+                <button id="signupClosebtn"><img src="imgs/closeb.png" alt="Closebtn"></button>
+
+                <span class="spantext">Welcome to TripSee</span>
+
+                <div class="name">
+                    <div class="namecenter"><p>Full Name</p><img src="imgs/profileb.png" alt="Profile"></div>
+                    <input type="email" placeholder="Enter your full name" maxlength="20" required>
+                </div>
+                <div class="email">
+                    <div class="emailcenter"><p>Email</p><img src="imgs/mailb.png" alt="Mail"></div>
+                    <input type="email" placeholder="Enter your email" maxlength="20" required>
+                </div>
+                <div class="pass">
+                    <div class="passcenter"><p>Password</p><img src="imgs/lockb.png" alt="Lock"></div>
+                    <input type="password" placeholder="Enter your password" maxlength="20" required>
+                </div>
+                <div class="passRep">
+                    <div class="passcenterRep"><p>Confirm Password</p><img src="imgs/lockb.png" alt="Lock"></div>
+                    <input type="password" placeholder="Confirm your password" maxlength="20" required>
+                </div>
+
+                <div class="requestSignup">
+                    <input type="submit" value="Sign Up">
+                </div>
+
+                <div class="Agreement">
+                <span>By creating an account, you agree to our</span><a href="#">Terms</a><span>and have read and</span>
+                <span>acknowledge the</span><a href="#">Privacy Policy.</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="filter-wd-box">
+
+            <div class="filter">
+
+                <div class="top-box">
+                    <img src="imgs/filterb.png" alt="Filter">
+                    <h2>Filter</h2>
+                </div>
+
+                <div class="mid-box">
+                    <div class="search">
+                        <h5>Search</h5>
+                        <div class="inputlope">
+                            <img src="imgs/lopeb.png" alt="Lupa">
+                            <input type="search" placeholder="Search locations...">
+                        </div>
+                    </div>
+                    <div class="price">
+                        <h5>Price Range</h5>
+                        <input type="range">
+                    </div>
+                    <div class="type">
+                        <label for="rating">Minimum Rating</label>
+                        <select id="rating" name="Rating">
+                          <option value="">Any Rating</option>
+                          <option value="3stars">3+ Stars</option>
+                          <option value="4stars">4+ Stars</option>
+                          <option value="5stars">5 Stars</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="locations">
+
+                
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <div class="allcontent_footer">
+            <div class="logolinks">
+                <div class="logo-container-footer">
+                    <a href="index.html"><img src="imgs/logobw.png" alt="Logo"></a><h1>TripSee</h1>
+                </div>
+                <p>Your trusted partner for seamless travel bookings <br> and unforgettable experiences around the world.</p>
+                <a href="https://www.tiktok.com/@fe.tripsee.srl?_t=ZM-90DwDRxytZ5&_r=1" class="tikt" target="_blank"><img src="imgs/tt.png" alt=""></a>
+                <a href="https://www.instagram.com/fe_tripsee_srl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="ins" target="_blank"><img src="imgs/insta.png" alt=""></a>
+            </div>
+            <div class="quicklinks">
+                <h1>Quick Links</h1>
+                <div class="links">
+                    <a href="index.html">Home</a>
+                    <a href="booking.html">Subscriptions</a>
+                    <a href="destination.html">Destinations</a>
+                    <a href="#">About us</a>
+                </div>
+            </div>
+            <div class="services">
+                <h1>Services</h1>
+                <div class="pcolumn">
+                    <p>Hotel Booking</p>
+                    <p>Apartment Rentals</p>
+                    <p>Flight Reservation</p>
+                    <p>Travel Insurance</p>
+                    <p>24/7 Support</p>
+                </div>
+            </div>
+            <div class="contacts">
+                <h1>Contact Us</h1>
+                <div class="contact">
+                    <div class="im1"><img src="imgs/mail.png" alt="Email"><a href="mailto:ttripsee@gmail.com" target="_blank">ttripsee@gmail.com</a></div>
+                    <div class="im2"><img src="imgs/phone.png" alt="Phone"><a href="tel:076901083" target="_blank">07 (69) 010 83</a></div>
+                    <div class="im3"><img src="imgs/loc.png" alt="Adress"><a href="https://maps.app.goo.gl/7VaEbuKbcGNEgGpL9" target="_blank">Strada Miron Costin 26/2, of.223, <br>Chișinău</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line">
+            <p class="underfooter">© 2025 TripSee FE. All rights reserved.</p>
+            <div class="underlinks">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="destinations.js"></script>
 </body>
 </html>
