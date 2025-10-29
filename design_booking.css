@@ -287,4 +287,10 @@
     border-radius: 20px;
     background: #FFFFFF;
 }
+.closeChange .hamb_underbtns{
+        display: grid;
+    }
+    .closeChange .bg-hamb{
+        display: block;
+    }
 }
