@@ -1,0 +1,290 @@
+.Subs_box{
+    text-align: center;
+}
+.Subs_box h2{
+    display: inline-block;
+    
+    margin: 0;
+    padding: 0 4rem;
+    padding-top: 3rem;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.Subs_line{
+    font-family: Poppins, sans-serif;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+
+    margin: 5%;
+    margin-top: 0%;
+    margin-bottom: 1%;
+    padding-top:1%;
+    padding-bottom:3%;
+
+    border-radius: 15px;
+    border: none;
+
+    
+
+    gap: 0.8rem;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    background-color: none;
+}
+.rep_box{
+    width: 20rem;
+    height: 32rem;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.up_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    background-image: url(imgs/cardbg.jpg);
+    background-size: cover;
+    background-position: center; 
+
+    color: #FFFFFF;
+}
+.middle_box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    padding-left: 1rem;
+
+    flex: 1;
+
+    margin: 1rem auto;  
+    width: 80%;
+    text-align: left;
+
+}
+.middle_box p{
+    margin: 4% 3%;
+    display: inline-block;
+    text-align: left;
+    width: 90%;
+}
+.under_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 600;
+
+    bottom: 0;
+}
+#buybtn,#buybtn2,#buybtn3,#buybtn4{
+    font-weight: 600;
+
+    width: 15rem;
+    height: 2rem;
+
+    color: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid #FF7E29;
+    background: linear-gradient(135deg, #FF7E29, #FFAE42);
+
+    margin: 6% 0%;
+
+    transition: 0.20s ease;
+}
+
+.packs_description{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.pack{
+    width: 35rem;
+    height: 40rem;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    background: #FFFFFF;
+}
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    height: 5rem;
+
+    border: 1px solid #000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    background-image: url(imgs/cardbg.jpg);
+    background-size: cover;
+    background-position: center; 
+
+    color: #FFFFFF;
+}
+.top i{
+    color: #FFFFFF;
+    font-size: 1.2rem;
+}
+.top button{
+    position: absolute;
+    left: 0;
+
+    background: none;
+    border: none;
+}
+.top button:hover{
+    transform: scale(110%);
+}
+.top h2{
+    margin: 0;
+}
+
+
+.middle{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    padding-left: 1rem;
+
+    flex: 1;
+
+    margin: 1rem auto;  
+    width: 80%;
+    text-align: left;
+}
+.bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 600;
+}
+#pack1,#pack2,#pack3,#pack4{
+    font-weight: 600;
+
+    width: 15rem;
+    height: 2rem;
+
+    color: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid #FF7E29;
+    background: linear-gradient(135deg, #FF7E29, #FFAE42);
+
+    margin: 1% 0%;
+
+    transition: 0.20s ease;
+}
+#pack1:hover,#pack2:hover,#pack3:hover,#pack4:hover{
+    transform: scale(1.05);
+
+    box-shadow: 0px 0px 15px rgba(255, 126, 41, 0.4);
+}
+#pack1:active,#pack2:active,#pack3:active,#pack4:active{
+    transform: scale(100%);
+}
+
+/*---------------------------------HOVER-------------------------------*/
+
+#buybtn:hover,#buybtn2:hover,#buybtn3:hover,#buybtn4:hover{
+    transform: scale(1.05);
+
+    box-shadow: 0px 0px 15px rgba(255, 126, 41, 0.4);
+}
+#buybtn:active,#buybtn2:active,#buybtn3:active,#buybtn4:active{
+    transform: scale(100%);
+}
+
+/*---------------------------------DARK THEME-------------------------------*/
+
+.dark-theme .Subs_line{
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+    background: #0A0F23;
+}
+.dark-theme .rep_box{
+    color: #FFFFFF;
+    border: 1px solid #2C3A63;
+}
+.dark-theme .middle_box{
+    color: #E0E0E0;
+}
+.dark-theme .Subs_box h2{
+    color: #FFFFFF;
+    border-bottom: 1px solid #1A2547;
+}
+.dark-theme .middle_box{
+    border-left: 1px solid #1A2547;
+}
+
+/*---------------------------------MEDIA-------------------------------*/
+
+@media(min-width: 370px) and (max-width: 900px){
+    .Subs_line{
+    font-family: Poppins, sans-serif;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin: 5%;
+    padding: 3% 5%;
+
+    border-radius: 15px;
+    border: none;
+
+    gap: 0.8rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x mandatory;
+}
+
+.rep_box{
+    width: 20rem;
+    height: 32rem;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+.pack{
+    width: 22rem;
+    height: 44rem;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    background: #FFFFFF;
+}
+}

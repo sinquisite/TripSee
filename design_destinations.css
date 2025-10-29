@@ -1,0 +1,127 @@
+.filter-wd-box{
+    display: flex;
+    flex-direction: row;
+
+    margin: 10% 0%;
+    margin-left: 5%;
+}
+
+.filter{
+    padding: 0.5rem 2rem;
+    padding-bottom: 2rem;
+    
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+.top-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.top-box img{
+    width: 2rem;
+    height: auto;
+}
+
+.mid-box{
+    display: flex;
+    flex-direction: column;
+}
+.mid-box h5{
+    margin: 0.4rem 0rem;
+}
+.mid-box input{
+    padding: 5% 8%;
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.inputlope {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputlope input {
+  width: 100%;
+  padding-right: 2rem; 
+  padding-left: 0.5rem;
+  height: 2rem;
+  box-sizing: border-box;
+}
+
+.inputlope img {
+  position: absolute;
+  right: 0.5rem; 
+  width: 1rem;
+  height: auto;
+  pointer-events: none; 
+}
+
+.price{
+    display: flex;
+    flex-direction: column;
+}
+.price h5{
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+.type{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 1.2rem;
+}
+.type label{
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    margin: 0.5rem 0;
+}
+.type select{
+    padding: 5% 8%;
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.locationbox{
+    width: 20rem;
+    height: auto;
+
+    border: 1px solid #000;
+    border-radius: 20px;
+
+    margin-left: 25%;
+}
+.top-box-loc img{
+    width: 100%;
+    height: auto;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.mid-box-loc{
+    margin-left: 5%;
+}
+.mid-box-loc h3{
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+}
+.locat{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    
+    gap: 0.4rem;
+
+}
+.locat img{
+    width: 1rem;
+    height: 1rem;
+}
+
