@@ -117,4 +117,14 @@ dark.addEventListener('click', () => {
   }
 });
 
+const act_hamb = document.getElementById('act_hamb');
+const switchclose = act_hamb.querySelector('img');
+
+act_hamb.addEventListener('click', () => {
+  // toggle the state
+  document.body.classList.toggle('closeChange');
+
+  // check if menu is closed/open after toggling
+  const closed = document.body.classList.contains('closeChange');
+});
 
