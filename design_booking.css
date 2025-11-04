@@ -253,27 +253,6 @@ header{
 /*---------------------------------MEDIA-------------------------------*/
 
 @media(min-width: 370px) and (max-width: 900px){
-    .Subs_line{
-    font-family: Poppins, sans-serif;
-    
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    margin: 5%;
-    padding: 3% 5%;
-
-    border-radius: 15px;
-    border: none;
-
-    gap: 0.8rem;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-
-    scroll-snap-type: x mandatory;
-}
 :root{
   --card-w: 20rem;
   --card-h: 30rem;
@@ -307,4 +286,37 @@ header{
     .closeChange .bg-hamb{
         display: block;
     }
+
+.carousel_center {
+    overflow: hidden;
+}
+
+
+.the_cards .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+
+.the_cards .card .middle,
+.the_cards .card .bottom {
+    margin-top: 0.5rem; 
+}
+
+
+.the_cards .card .bottom {
+    padding-bottom: 1rem;
+}
+
+.card .middle p{
+  padding: 0 2rem;
+}
+.card .middle li{
+  margin: 0 3rem;
+}
+.card .bottom{
+  margin-bottom: 1rem;
+}
+
 }
