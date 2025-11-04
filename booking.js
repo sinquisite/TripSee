@@ -128,3 +128,55 @@ act_hamb.addEventListener('click', () => {
   const closed = document.body.classList.contains('closeChange');
 });
 
+
+const loginboxShadow = document.getElementById('loginboxShadow');
+const login = document.getElementById('login');
+const loginClosebtn = document.getElementById('loginClosebtn');
+
+login.addEventListener('click', () => {
+  document.body.classList.add('show');
+  document.body.style.overflow = 'hidden';
+});
+loginClosebtn.addEventListener('click', () => {
+  document.body.classList.remove('show');
+  document.body.style.overflow = '';  
+});
+
+const signupboxShadow = document.getElementById('signupboxShadow');
+const signup = document.getElementById('signup');
+const signupClosebtn = document.getElementById('signupClosebtn');
+
+signup.addEventListener('click', () => {
+  document.body.classList.add('showsign');
+  document.body.style.overflow = 'hidden';
+});
+signupClosebtn.addEventListener('click', () => {
+  document.body.classList.remove('showsign');
+  document.body.style.overflow = '';  
+});
+
+const loginboxShadow_under = document.getElementById('loginboxShadow');
+const login_under = document.getElementById('login_under');
+const loginClosebtn_under = document.getElementById('loginClosebtn');
+
+login_under.addEventListener('click', () => {
+  document.body.classList.add('show');
+  document.body.style.overflow = 'hidden';
+});
+loginClosebtn_under.addEventListener('click', () => {
+  document.body.classList.remove('show');
+  document.body.style.overflow = '';  
+});
+
+const signupboxShadow_under = document.getElementById('signupboxShadow');
+const signup_under = document.getElementById('signup_under');
+const signupClosebtn_under = document.getElementById('signupClosebtn');
+
+signup_under.addEventListener('click', () => {
+  document.body.classList.add('showsign');
+  document.body.style.overflow = 'hidden';
+});
+signupClosebtn.addEventListener('click', () => {
+  document.body.classList.remove('showsign');
+  document.body.style.overflow = '';  
+});
