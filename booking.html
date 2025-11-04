@@ -1,363 +1,310 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TripSee</title>
-    <link rel="icon" type="image/x-icon" href="imgs/logobl.png">
+header{
+    z-index: 999;
+}
+/* ---------- Carousel styles (replace previous carousel rules) ---------- */
+:root{
+  --card-w: 20rem;
+  --card-h: 28rem;
+  --gap: -9rem;       /* horizontal gap between centers of cards */
+  --center-scale: 1.10;
+  --transition: 500ms cubic-bezier(.22,.9,.35,1);
+}
 
-    <link rel="stylesheet" href="design.css">
-    <link rel="stylesheet" href="design_booking.css">
+.carousel_center{
+  width: 70rem; /* wide enough to show partial side cards */
+  max-width: calc(100% - 2rem);
+  margin: 3rem auto;
+  position: relative;
+  height: var(--card-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-  
-  <header>
+.the_cards{
+  position: relative;
+  width: 100%;
+  height: var(--card-h);
+  display: block;
+  pointer-events: none; /* cards themselves will control pointer-events by class */
+}
 
-    <div class="logo-container">
-        <a href="index.html"><img src="imgs/logobw.png" alt="Logo"></a>
-        <h1>TripSee</h1>
-    </div>
+/* Generic card base (all four cards share same look) */
+.the_cards .card{
+  --bg-img: url('imgs/cardbg.jpg');
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: 15px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* baseline centered */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform var(--transition), opacity var(--transition), z-index var(--transition);
+  overflow: hidden;
+  pointer-events: none;
+}
 
+/* Top area with background image (same bg for all cards) */
+.the_cards .card .top{
+  height: 6rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  font-size: 1.15rem;
+}
+
+/* Middle & bottom */
+.the_cards .card .middle{
+  padding: 0.9rem 1rem;
+  text-align:center;
+  color: rgba(0,0,0,0.7);
+  margin-top: 1.8rem;
+}
+.the_cards .card .middle h4{
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  color: #000;
+}
+.the_cards .card .bottom{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top: 1rem;
+}
+.the_cards .card .bottom button{
+  padding: 0.4rem 2.5rem;
+  border-radius: 12px;
+  border:none;
+  background: linear-gradient(135deg,#FF7E29,#FFAE42);
+  color:#FFFFFF;
+  cursor:pointer;
+  pointer-events: auto;
+  transition: transform 150ms ease;
+}
+.the_cards .card .bottom button:hover{ transform: scale(1.05); box-shadow: 0px 0px 15px rgba(255, 126, 41, 0.4);}
+
+/* State classes: center, left, right, hidden-left, hidden-right */
+.the_cards .card.center{
+  transform: translateX(-50%) scale(var(--center-scale));
+  z-index: 4;
+  opacity: 1;
+  pointer-events: auto; /* center interactive (button clickable) */
+}
+
+.the_cards .card.left{
+  transform: translateX(calc(-50% - (var(--card-w) + var(--gap)))) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
+.the_cards .card.right{
+  transform: translateX(calc(-50% + (var(--card-w) + var(--gap)))) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
+/* fade/slide niceties */
+.the_cards .card{ will-change: transform, opacity; }
+
+/* Arrow buttons */
+.carousel-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(255,255,255,0.95);
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  z-index: 10;
+}
+.carousel-arrow.left{ left: 6rem; }
+.carousel-arrow.right{ right: 6rem; }
+
+.carousel-arrow i{ font-size: 1rem; color:#222; }
+
+/* disable selection while sliding */
+.the_cards .card, .carousel-arrow { user-select: none; }
+
+/* Small screens adjustments */
+@media (max-width: 900px){
+  :root{ --card-w: 18rem; --card-h: 22rem; --gap: 4.5rem; --center-scale:1.07; }
+  .carousel_center{ width: 100%; }
+  .carousel-arrow.left{ left: 0.2rem; } .carousel-arrow.right{ right: 0.2rem; }
+}
+
+/* Tabs above carousel */
+.carousel-tabs{
+  display:flex;
+  justify-content:center;
+  gap: 0.6rem;
+  margin: 1rem auto 0;
+}
+.tab-btn{
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: transparent;
+  cursor:pointer;
+  font-weight:600;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.tab-btn:hover{ transform: translateY(-2px); }
+
+/* Active tab uses the same gradient */
+.tab-btn.active{
+  color: white;
+  background: linear-gradient(135deg,#FF7E29,#FFAE42);
+  box-shadow: 0 8px 24px rgba(255,126,41,0.18);
+}
+
+/* show/hide groups */
+.the_cards{ pointer-events: none; } /* default */
+.the_cards.active{
+  pointer-events: auto;
+  opacity: 1;
+}
+.the_cards[aria-hidden="true"]{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute; /* keep layout stable underneath arrows */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.bottom a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.dark-theme .bottom a{
+    color: #000;
+}
+
+.loginboxShadow,.signupboxShadow{
+  z-index: 1000;
+}
+
+/*---------------------------------HOVER-------------------------------*/
+
+
+
+/*---------------------------------DARK THEME-------------------------------*/
+
+.dark-theme .Subs_line{
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+    background: #0A0F23;
+}
+.dark-theme .rep_box{
+    color: #FFFFFF;
+    border: 1px solid #2C3A63;
+}
+.dark-theme .middle_box{
+    color: #E0E0E0;
+}
+.dark-theme .Subs_box h2{
+    color: #FFFFFF;
+    border-bottom: 1px solid #1A2547;
+}
+.dark-theme .middle_box{
+    border-left: 1px solid #1A2547;
+}
+.dark-theme .carousel-tabs .tab-btn{
+    color: #FFFFFF;
+}
+.dark-theme .card{
+    background: #0A0F23;
+}
+.dark-theme .middle p{
+    color: #FFFFFF;
+}
+.dark-theme .the_cards .card .middle h4{
+    color: #FFFFFF;
+}
+.dark-theme .the_cards .card .bottom button{
+    color: #000;
+}
+.dark-theme .tab-btn{
+    border: 1px solid #2C3A63;
+}
+.dark-theme li{
+    color: #FFFFFF;
+}
+.dark-theme .carousel-arrow.left i,.dark-theme .carousel-arrow.right i{
+    color: #FFFFFF;
+}
+.dark-theme .carousel-arrow.left, .dark-theme .carousel-arrow.right{
+    background: #0A0F23;
+}
+/*---------------------------------MEDIA-------------------------------*/
+
+@media(min-width: 370px) and (max-width: 900px){
+    .Subs_line{
+    font-family: Poppins, sans-serif;
     
-    
-    <div class="navbar">
-        <a href="index.html" id="homenaw"><img src="imgs/homew.png" alt="Home"></a>
-        <a href="booking.html" id="booknaw"><img src="imgs/searchw.png" alt="Book"></a>
-        <a href="destination.html" id="savenaw"><img src="imgs/savew.png" alt="Saved"></a>
-    </div>
-
-    <div class="btns">
-        <button id="darkmode"><img src="imgs/moonb.png" alt="Dark"></button>
-        <div class="hamburger1">
-
-            <button id="act_hamb"><img src="imgs/menub.png" alt="Menu"></button>
-        
-        </div>
-        <button id="login"><img src="imgs/loginb.png" alt="Login"><p>Log In</p></button>
-        <button id="signup"><img src="imgs/signupw.png" alt="Signup"><p>Sign Up</p></button>
-    </div>
-
-    </header>
-
-    <main>
-
-        <div class="bg-hamb">
-            <div class="hamb_nav">
-
-                <div><a href="index.html" id="althome"><img src="imgs/homeb.png" alt="Home" >Home</a></div>
-                <div><a href="booking.html" id="altbook"><img src="imgs/searchb.png" alt="Search" >Booking</a></div>
-                <div><a href="destination.html" id="altloc"><img src="imgs/saveb.png" alt="Save" >Locations</a></div>
-
-            </div>
-        </div>
-
-        <div class="hamb_underbtns">
-            <button id="login_under"><img src="imgs/loginb.png" alt="Login"><p>Log In</p></button>
-            <button id="signup_under"><img src="imgs/signupw.png" alt="Signup"><p>Sign Up</p></button>
-        </div>
-
-        <div class="loginboxShadow">
-
-            <div class="loginbox">
-                
-                <button id="loginClosebtn"><img src="imgs/closeb.png" alt="Closebtn"></button>
-
-                <span class="spantext">Welcome to TripSee</span>
-
-                <div class="email">
-                    <div class="emailcenter"><p>Email</p><img src="imgs/profileb.png" alt="Profile"></div>
-                    <input type="email" placeholder="Enter your email" maxlength="20" required>
-                </div>
-                <div class="pass">
-                    <div class="passcenter"><p>Password</p><img src="imgs/lockb.png" alt="Lock"></div>
-                    <input type="password" placeholder="Enter your password" maxlength="20" required>
-                </div>
-
-                <div class="checkNpass">
-                    <div class="rememberMe"><input type="checkbox"><span>Remember me</span></div><a href="">Forgot Password?</a>
-                </div>
-
-                <div class="requestLogin">
-                    <input type="submit" value="Log In">
-                </div>
-
-                <div class="signupINlog">
-                    <span>Don't have an account?</span><a href="#">Register</a>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="signupboxShadow">
-            
-            <div class="signupbox">
-                
-                <button id="signupClosebtn"><img src="imgs/closeb.png" alt="Closebtn"></button>
-
-                <span class="spantext">Welcome to TripSee</span>
-
-                <div class="name">
-                    <div class="namecenter"><p>Full Name</p><img src="imgs/profileb.png" alt="Profile"></div>
-                    <input type="email" placeholder="Enter your full name" maxlength="20" required>
-                </div>
-                <div class="email">
-                    <div class="emailcenter"><p>Email</p><img src="imgs/mailb.png" alt="Mail"></div>
-                    <input type="email" placeholder="Enter your email" maxlength="20" required>
-                </div>
-                <div class="pass">
-                    <div class="passcenter"><p>Password</p><img src="imgs/lockb.png" alt="Lock"></div>
-                    <input type="password" placeholder="Enter your password" maxlength="20" required>
-                </div>
-                <div class="passRep">
-                    <div class="passcenterRep"><p>Confirm Password</p><img src="imgs/lockb.png" alt="Lock"></div>
-                    <input type="password" placeholder="Confirm your password" maxlength="20" required>
-                </div>
-
-                <div class="requestSignup">
-                    <input type="submit" value="Sign Up">
-                </div>
-
-                <div class="Agreement">
-                <span>By creating an account, you agree to our</span><a href="#">Terms</a><span>and have read and</span>
-                <span>acknowledge the</span><a href="#">Privacy Policy.</a>
-                </div>
-
-            </div>
-
-        </div>
-
-        
-        <div class="Subs_box">
-
-            <h2>Packs</h2>
-
-            <div class="Subs_line">
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Discover Moldova</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Discover Chișinău, Orheiul Vechi, Soroca Fortress</p>
-                        <p>Local tours, food tasting, and cultural experiences</p>
-                        <p>Perfect for first-time travelers</p>
-                      
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn">About Pack</button>
-                    </div>
-
-                </div>
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Nature Escape Pack</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Codrii Forest, Saharna Monastery, Tipova Gorge, Nistru River kayaking</p>
-                        <p>Focused on nature and relaxation</p>
-                        <p>Includes eco-lodges and guided hikes</p>
-                      
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn2">About Pack</button>
-                    </div>
-
-                </div>
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Wine & Gourmet</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Cricova, Mileștii Mici, and Castel Mimi wineries</p>
-                        <p>Includes tastings, fine dining, and vineyard tours</p>
-                        <p>For wine lovers and food enthusiasts</p>
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn3">About Pack</button>
-                    </div>
-
-                </div>
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Adventure Moldova</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Off-road tours, paragliding near Orhei, rafting, cycling routes</p>
-                        <p>Includes equipment rental and professional guide</p>
-                        <p>For thrill seekers</p>
-                      
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn4">About Pack</button>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <h2>Subscriptions</h2>
-
-            <div class="Subs_line">
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Free Plan</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Basic access to booking and browsing packs</p>
-                        <p>Includes ads and limited offers</p>
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn">Buy</button>
-                    </div>
-
-                </div>
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Premium</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Removes all ads</p>
-                        <p>Gives early access to trip deals and discounts</p>
-                        <p>Monthly or yearly option</p>
-                      
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn2">Buy</button>
-                    </div>
-
-                </div>
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Explorer+</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Priority booking access</p>
-                        <p>Exclusive “hidden” local experiences and limited offers</p>
-                        <p>Trip planning assistance</p>
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn3">Buy</button>
-                    </div>
-
-                </div>
-
-                <div class="rep_box">
-
-                    <div class="up_box">
-                    <h2>Elite+</h2>
-                    </div>
-
-                    <div class="middle_box">
-                        <p>Up to 20% off partner hotels & rentals</p>
-                        <p>Free upgrade options where available</p>
-                        <p>24/7 travel support and concierge</p>
-                      
-                    </div>
-
-                    <div class="under_box">
-                        <p>PRICE</p>
-                        <button id="buybtn4">Buy</button>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-    </main>
-
-    <footer>
-
-        <div class="allcontent_footer">
-            <div class="logolinks">
-                <div class="logo-container-footer">
-                    <a href="index.html"><img src="imgs/logobw.png" alt="Logo"></a><h1>TripSee</h1>
-                </div>
-                <p>Your trusted partner for seamless travel bookings <br> and unforgettable experiences around the world.</p>
-                <a href="https://www.tiktok.com/@fe.tripsee.srl?_t=ZM-90DwDRxytZ5&_r=1" class="tikt" target="_blank"><img src="imgs/tt.png" alt=""></a>
-                <a href="https://www.instagram.com/fe_tripsee_srl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="ins" target="_blank"><img src="imgs/insta.png" alt=""></a>
-            </div>
-            <div class="quicklinks">
-                <h1>Quick Links</h1>
-                <div class="links">
-                    <a href="index.html">Home</a>
-                    <a href="booking.html">Book now</a>
-                    <a href="destination.html">Destinations</a>
-                    <a href="#">About us</a>
-                </div>
-            </div>
-            <div class="services">
-                <h1>Services</h1>
-                <div class="pcolumn">
-                    <p>Hotel Booking</p>
-                    <p>Apartment Rentals</p>
-                    <p>Flight Reservation</p>
-                    <p>Travel Insurance</p>
-                    <p>24/7 Support</p>
-                </div>
-            </div>
-            <div class="contacts">
-                <h1>Contact Us</h1>
-                <div class="contact">
-                    <div class="im1"><img src="imgs/mail.png" alt="Email"><a href="mailto:ttripsee@gmail.com" target="_blank">ttripsee@gmail.com</a></div>
-                    <div class="im2"><img src="imgs/phone.png" alt="Phone"><a href="tel:076901083" target="_blank">07 (69) 010 83</a></div>
-                    <div class="im3"><img src="imgs/loc.png" alt="Adress"><a href="https://maps.app.goo.gl/7VaEbuKbcGNEgGpL9" target="_blank">Strada Miron Costin 26/2, of.223, <br>Chișinău</a></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="line">
-            <p class="underfooter">© 2025 TripSee FE. All rights reserved.</p>
-            <div class="underlinks">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
-            </div>
-        </div>
-    </footer>
-
-
-    <script src="booking.js"></script>
-    <script src="scr.js"></script>
-</body>
-</html>
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin: 5%;
+    padding: 3% 5%;
+
+    border-radius: 15px;
+    border: none;
+
+    gap: 0.8rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x mandatory;
+}
+:root{
+  --card-w: 20rem;
+  --card-h: 30rem;
+}
+
+.rep_box{
+    width: 20rem;
+    height: 32rem;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+.pack{
+    width: 22rem;
+    height: 44rem;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    background: #FFFFFF;
+}
+.closeChange .hamb_underbtns{
+        display: grid;
+    }
+    .closeChange .bg-hamb{
+        display: block;
+    }
+}
