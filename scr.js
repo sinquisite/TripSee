@@ -7,14 +7,12 @@ const darklog = log.querySelector('img'); //img inside the btn
 const reg = document.getElementById('signup');
 const darkreg = reg.querySelector('img'); //img inside the btn
 
+// CORECTAT: Verificăm dacă elementul 'book' există
 const arrw = document.getElementById('book');
-const darkarrw = arrw.querySelector('img'); //img inside the btn
+const darkarrw = arrw ? arrw.querySelector('img') : null; //img inside the btn
 
 const home = document.getElementById('homenaw');
 const darkhome = home.querySelector('img'); //img inside the btn
-
-const book = document.getElementById('booknaw');
-const darkbook = book.querySelector('img'); //img inside the btn
 
 const save = document.getElementById('savenaw');
 const darksave = save.querySelector('img'); //img inside the btn
@@ -22,11 +20,9 @@ const darksave = save.querySelector('img'); //img inside the btn
 const althomevar = document.getElementById('althome');
 const althovevardark = althomevar.querySelector('img'); //img inside the btn
 
-const altbookvar = document.getElementById('altbook');
-const altbookvardark = altbookvar.querySelector('img'); //img inside the btn
-
+// CORECTAT: Verificăm dacă elementul 'altloc' există
 const altlocvar = document.getElementById('altloc');
-const altlocvardark = altlocvar.querySelector('img'); //img inside the btn
+const altlocvardark = altlocvar ? altlocvar.querySelector('img') : null; //img inside the btn
 
 const loginunder = document.getElementById('login_under');
 const darkloginunder = loginunder.querySelector('img'); //img inside the btn
@@ -55,27 +51,27 @@ dark.addEventListener('click', () => {
     darkreg.src = 'imgs/signupb.png';  //sun icon
     darkreg.alt = 'RegLight';
 
-    darkarrw.src = 'imgs/arrowb.png';  //arrow icon
-    darkarrw.alt = 'ArrwLight';
+    // CORECTAT: Schimbăm doar dacă 'darkarrw' există
+    if (darkarrw) {
+        darkarrw.src = 'imgs/arrowb.png';  //arrow icon
+        darkarrw.alt = 'ArrwLight';
+    }
 
     darkhome.src = 'imgs/homeb.png';  //home icon
     darkhome.alt = 'HomeDark';
 
-    darkbook.src = 'imgs/searchb.png';  //book icon
-    darkbook.alt = 'BookDark';
-
-    darksave.src = 'imgs/saveb.png';  //save icon
+    darksave.src = 'imgs/searchb.png';  //save icon
     darksave.alt = 'ArrwDark';
 
     althovevardark.src = 'imgs/homew.png';  //home icon
     althovevardark.alt = 'AltHomeLight';
 
-    altbookvardark.src = 'imgs/searchw.png';  //book icon
-    altbookvardark.alt = 'AltBookLight';
-
-    altlocvardark.src = 'imgs/savew.png';  //save icon
-    altlocvardark.alt = 'AltLocLight';
-
+    // CORECTAT: Schimbăm doar dacă 'altlocvardark' există
+    if (altlocvardark) {
+        altlocvardark.src = 'imgs/savew.png';  //save icon
+        altlocvardark.alt = 'AltLocLight';
+    }
+    
     darkloginunder.src = 'imgs/loginw.png';  //login icon
     darkloginunder.alt = 'LogunderWhite';
 
@@ -94,26 +90,26 @@ dark.addEventListener('click', () => {
     darkreg.src = 'imgs/signupw.png';  //switch back to white signup
     darkreg.alt = 'RegDark';
 
-    darkarrw.src = 'imgs/arroww.png';  //switch back to white arrow
-    darkarrw.alt = 'ArrwDark';
+    // CORECTAT: Schimbăm doar dacă 'darkarrw' există
+    if (darkarrw) {
+        darkarrw.src = 'imgs/arroww.png';  //switch back to white arrow
+        darkarrw.alt = 'ArrwDark';
+    }
 
     darkhome.src = 'imgs/homew.png';  //switch back to white home
     darkhome.alt = 'HomeDark';
 
-    darkbook.src = 'imgs/searchw.png';  //switch back to white book
-    darkbook.alt = 'BookDark';
-
-    darksave.src = 'imgs/savew.png';  //switch back to white save
+    darksave.src = 'imgs/searchw.png';  //switch back to white save
     darksave.alt = 'ArrwDark';
 
     althovevardark.src = 'imgs/homeb.png';  //switch back to black home
     althovevardark.alt = 'AltHomeDark';
 
-    altbookvardark.src = 'imgs/searchb.png';  //switch back to black book
-    altbookvardark.alt = 'AltBookDark';
-
-    altlocvardark.src = 'imgs/saveb.png';  //switch back to black save
-    altlocvardark.alt = 'AltLocDark';
+    // CORECTAT: Schimbăm doar dacă 'altlocvardark' există
+    if (altlocvardark) {
+        altlocvardark.src = 'imgs/saveb.png';  //switch back to black save
+        altlocvardark.alt = 'AltLocDark';
+    }
 
     darkloginunder.src = 'imgs/loginb.png';  //switch back to black login
     darkloginunder.alt = 'LogunderBlack';
