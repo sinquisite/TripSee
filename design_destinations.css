@@ -1,17 +1,29 @@
+/* Main container for filter and cards */
 .filter-wd-box{
     display: flex;
-    flex-direction: row;
-
-    margin: 10% 0%;
-    margin-left: 5%;
+    flex-direction: row; /* Filter and content side-by-side */
+    justify-content: center; /* Center the whole group */
+    align-items: center; /* Vertically center the filter and content area */
+    gap: 2rem; /* Space between filter and cards */
+    
+    /* REDUCED top/bottom margin */
+    margin: 1.5rem 5%; 
+    /* REMOVED min-height: 100vh; */
 }
 
+/* Filter styling */
 .filter{
-    padding: 0.5rem 2rem;
-    padding-bottom: 2rem;
+    flex-basis: 18rem; /* Set a base width */
+    flex-shrink: 0; /* Don't let it shrink */
     
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 1rem 1.5rem 1.5rem; /* Adjusted padding */
+    
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Lighter border */
     border-radius: 15px;
+    background: #FFFFFF;
+    
+    /* Professional shadow */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .top-box{
@@ -19,22 +31,28 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    gap: 0.5rem; /* Added gap */
+    padding-bottom: 0.5rem; /* Space below title */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Separator line */
 }
 .top-box img{
-    width: 2rem;
+    width: 1.5rem; /* Adjusted size */
     height: auto;
+}
+.top-box h2 {
+    margin: 0;
 }
 
 .mid-box{
     display: flex;
     flex-direction: column;
+    margin-top: 1rem; /* Space above first item */
 }
 .mid-box h5{
     margin: 0.4rem 0rem;
 }
-.mid-box input{
+.mid-box input[type="search"] {
     padding: 5% 8%;
-
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -48,80 +66,431 @@
 .inputlope input {
   width: 100%;
   padding-right: 2rem; 
-  padding-left: 0.5rem;
-  height: 2rem;
+  padding-left: 0.8rem; /* More space for text */
+  height: 2.5rem; /* Taller input */
   box-sizing: border-box;
 }
 
 .inputlope img {
   position: absolute;
-  right: 0.5rem; 
+  right: 0.8rem; 
   width: 1rem;
   height: auto;
   pointer-events: none; 
 }
 
-.price{
-    display: flex;
-    flex-direction: column;
-}
-.price h5{
-    margin-top: 2rem;
-    margin-bottom: 0;
-}
-
 .type{
     display: flex;
     flex-direction: column;
-
     margin-top: 1.2rem;
 }
 .type label{
     font-size: 0.85rem;
     font-weight: 600;
-
     margin: 0.5rem 0;
 }
 .type select{
-    padding: 5% 8%;
-
+    padding: 10px 12px; /* Non-percentage padding */
+    height: 2.5rem; /* Match search input height */
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    cursor: pointer;
 }
 
-.locationbox{
-    width: 20rem;
-    height: auto;
-
-    border: 1px solid #000;
-    border-radius: 20px;
-
-    margin-left: 25%;
+/* Right side content */
+.content-area {
+    flex-basis: 55rem; /* Max width for cards area */
+    flex-shrink: 1; /* Allow it to shrink if needed */
+    min-width: 0; /* Fix flexbox overflow issue */
 }
-.top-box-loc img{
-    width: 100%;
-    height: auto;
 
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+/*===========================BOX LOCATIONS=======================================*/
+
+.locations{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align cards to the left */
+    gap: 1.5rem;
 }
-.mid-box-loc{
-    margin-left: 5%;
+
+.box_location{
+  display: none; /* Hide all by default for pagination */
+  
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Lighter border */
+  border-radius: 15px; /* Softer radius */
+  width: 26rem; /* Slightly wider */
+  height: 10rem;
+  
+  background: #FFFFFF;
+  overflow: hidden; /* Ensure content stays within border */
+
+  /* Professional shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* Hover effect */
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
-.mid-box-loc h3{
-    margin-top: 1rem;
-    margin-bottom: 0.2rem;
+
+.box_location:hover {
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+}
+
+.box_location.visible {
+    display: flex; /* Show only cards for the current page */
+}
+
+.top{
+  width: 7.5rem; /* Slightly wider image */
+  min-width: 7.5rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  
+  /* Remove border radius, image is bg */
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+
+  background-position: center;
+  background-size: cover;
+}
+
+.middle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+    
+    padding: 0 1rem; /* Use padding instead of margin */
+    width: calc(100% - 7.5rem); /* Occupy remaining space */
+}
+.middle i{
+  font-size: 13px;
+  color: #FF7E29; /* Use theme color for icon */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+.middle p{
+    margin: 0;
+    font-size: 0.9rem;
+}
+.middle h4{
+    margin: 0 0 0.25rem 0; /* Add space below title */
+    font-size: 1.15rem; /* Larger title */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .locat{
     display: flex;
     align-items: center;
-    justify-content: left;
-    
     gap: 0.4rem;
-
+    margin-bottom: 0.5rem; /* Space below location */
 }
-.locat img{
-    width: 1rem;
-    height: 1rem;
+.locat p {
+    color: #555; /* Slightly muted text */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.category{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem; /* Tighter gap */
+    margin: 0.5rem 0;
+}
+.category p{
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    padding: 0.2rem 0.8rem; /* Adjusted padding */
+    font-size: 10px;
+    white-space: nowrap;
+    color: #333;
+    background-color: #f9f9f9; /* Light bg for tags */
+}
+.middle a{
+    text-decoration: none;
+    color: #000;
+    margin: 0.4rem 0;
+    transition: 0.15s ease;
+    font-weight: 600;
+}
+.middle a:hover{
+    color: #FF7E29;
+}
+.rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem; /* Gap between star and number */
+    
+    /* Pushed to the right */
+}
+.rating i {
+    color: #f0c000; /* Gold star */
+}
+.rating p {
+    font-weight: 600;
+}
+
+.infoabout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Pushes rating to the right */
+    align-items: center;
+    margin-top: 0.5rem; /* Space above this line */
+}
+
+/*===========================PAGINATION=======================================*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    margin-top: 2rem;
+    gap: 0.5rem;
+    width: 100%; /* Ensure it spans the content area */
+}
+
+.page-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.page-btn:hover {
+    background-color: #f0f0f0;
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.page-btn.active {
+    background-color: #FF7E29;
+    color: #fff;
+    border-color: #FF7E29;
+}
+
+/* New styles for page jump input */
+.page-jump {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.page-jump label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.page-jump input[type="number"] {
+    width: 3rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    -moz-appearance: textfield; /* Hide arrows in Firefox */
+}
+.page-jump input[type="number"]::-webkit-outer-spin-button,
+.page-jump input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Hide arrows in Chrome/Safari */
+    margin: 0;
+}
+
+#page-go-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #000;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#page-go-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/*===========================RESPONSIVE=======================================*/
+
+/* Add media query for smaller screens */
+@media (max-width: 1200px) {
+    .filter-wd-box {
+        flex-direction: column; /* Stack filter on top of cards */
+        align-items: center; /* Center them when stacked */
+    }
+    .filter {
+        flex-basis: auto; /* Auto width */
+        width: 100%; /* Full width */
+        max-width: 40rem; /* Limit max width */
+    }
+    .content-area {
+        flex-basis: auto; /* Auto width */
+        width: 100%;
+    }
+    .locations {
+        justify-content: center; /* Center cards */
+    }
+}
+
+@media (max-width: 600px) {
+    .filter-wd-box {
+        margin: 1.5rem 3%; /* Reduce margin on mobile */
+    }
+    .box_location {
+        width: 100%; /* Full width cards on mobile */
+        height: auto; /* Auto height */
+        flex-direction: column; /* Stack image on top of content */
+    }
+    .box_location:hover {
+        transform: none; /* Disable hover lift on mobile */
+    }
+    .top {
+        width: 100%; /* Full width image */
+        height: 10rem; /* Fixed height for image */
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px; /* Add top right */
+        border-bottom-left-radius: 0; /* Remove bottom left */
+    }
+    .middle {
+        width: 100%;
+        padding: 1rem; /* Add padding all around */
+        box-sizing: border-box; /* Include padding in width */
+    }
+    .pagination {
+        gap: 0.5rem;
+        justify-content: center;
+    }
+    .page-jump {
+        margin-left: 0;
+        margin-top: 0.5rem; /* Stack on new line */
+        flex-basis: 100%; /* Take full width */
+        justify-content: center;
+    }
+}
+
+/*===========================DARK THEME=======================================*/
+/* Applied colors from your design.css file */
+
+body.dark-theme .filter {
+    background: #0A0F23; /* from .section4 */
+    border-color: #1A2547; /* from header border */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .top-box {
+    border-color: #1A2547; /* from header border */
+}
+
+body.dark-theme .top-box h2 {
+    color: #FFFFFF; /* from .themeSecondtext */
+}
+
+body.dark-theme .type label,
+body.dark-theme .mid-box h5 {
+    color: #E0E0E0; /* from .ptext */
+}
+
+body.dark-theme .inputlope input,
+body.dark-theme .type select {
+    background-color: #1A2547; /* from header border */
+    border-color: #2C3A63; /* from #login border */
+    color: #E0E0E0; /* from .ptext */
+}
+
+body.dark-theme .box_location {
+    background: #0A0F23; /* from .section4 */
+    border-color: #1A2547; /* from header border */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .box_location:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-color: #2C3A63; /* Add hover border */
+}
+
+body.dark-theme .top {
+    border-color: #1A2547; /* from header border */
+}
+
+body.dark-theme .middle h4,
+body.dark-theme .middle a {
+    color: #FFFFFF; /* from .themeSecondtext */
+}
+
+body.dark-theme .rating p {
+     color: #E0E0E0; /* from .ptext */
+}
+
+body.dark-theme .locat p {
+    color: #E0E0E0; /* from .ptext */
+}
+
+body.dark-theme .category p {
+    background-color: #2C3A63; /* from #login border */
+    border-color: #2C3A63; /* match bg */
+    color: #E0E0E0; /* from .ptext */
+}
+
+body.dark-theme .middle a:hover {
+    color: #FF7E29; /* Keep brand color */
+}
+
+body.dark-theme .page-btn {
+    background-color: #1A2547; /* from header border */
+    border-color: #2C3A63; /* from #login border */
+    color: #E0E0E0; /* from .ptext */
+}
+
+body.dark-theme .page-btn:hover {
+    background-color: #2C3A63; /* from #login border */
+}
+
+body.dark-theme .page-btn.active {
+    background-color: #FF7E29; /* Your brand color */
+    color: #FFFFFF; /* Text on brand color */
+    border-color: #FF7E29;
+}
+
+/* Dark theme for new page jump elements */
+body.dark-theme .page-jump label {
+    color: #E0E0E0;
+}
+
+body.dark-theme .page-jump input[type="number"] {
+    background-color: #1A2547;
+    border-color: #2C3A63;
+    color: #E0E0E0;
+}
+
+body.dark-theme #page-go-btn {
+    background-color: #1A2547;
+    border-color: #2C3A63;
+    color: #E0E0E0;
+}
+
+body.dark-theme #page-go-btn:hover {
+    background-color: #2C3A63;
+}
+
+
+/* Fix for dark mode select arrow */
+body.dark-theme .type select {
+    /* Updated stroke color to match your palette */
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2724%27%20height%3D%2724%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%23E0E0E0%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpolyline%20points%3D%276%209%2012%2015%2018%209%27%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 2.5rem; /* Make space for arrow */
+}
