@@ -1,181 +1,88 @@
-const dark = document.getElementById('darkmode');
-const darkImg = dark.querySelector('img'); //img inside the btn
+// --- PAGINATION SCRIPT (UPDATED) ---
+document.addEventListener("DOMContentLoaded", () => {
+    const cardsPerPage = 6;
+    const allCards = document.querySelectorAll(".locations .box_location");
+    const pageButtons = document.querySelectorAll(".pagination .page-btn");
+    
+    // New elements for page jump
+    const pageInput = document.getElementById("page-input");
+    const pageGoBtn = document.getElementById("page-go-btn");
+    
+    // Calculate total pages and set max for input
+    const totalPages = Math.ceil(allCards.length / cardsPerPage);
+    if (pageInput) {
+        pageInput.max = totalPages;
+    }
 
-const log = document.getElementById('login');
-const darklog = log.querySelector('img'); //img inside the btn
+    function showPage(pageNumber) {
+        // Ensure pageNumber is valid
+        if (pageNumber < 1) pageNumber = 1;
+        if (pageNumber > totalPages) pageNumber = totalPages;
 
-const reg = document.getElementById('signup');
-const darkreg = reg.querySelector('img'); //img inside the btn
+        // Hide all cards
+        allCards.forEach(card => {
+            card.classList.remove("visible");
+        });
 
-const home = document.getElementById('homenaw');
-const darkhome = home.querySelector('img'); //img inside the btn
+        // Calculate start and end index
+        const startIndex = (pageNumber - 1) * cardsPerPage;
+        const endIndex = pageNumber * cardsPerPage;
 
-const book = document.getElementById('booknaw');
-const darkbook = book.querySelector('img'); //img inside the btn
+        // Show cards for the current page
+        for (let i = startIndex; i < endIndex && i < allCards.length; i++) {
+            if (allCards[i]) {
+                allCards[i].classList.add("visible");
+            }
+        }
 
-const save = document.getElementById('savenaw');
-const darksave = save.querySelector('img'); //img inside the btn
+        // Update active button state
+        pageButtons.forEach(btn => {
+            btn.classList.remove("active");
+            if (parseInt(btn.dataset.page) === pageNumber) {
+                btn.classList.add("active");
+            }
+        });
+        
+        // Update input field value
+        if (pageInput) {
+            pageInput.value = pageNumber;
+        }
+    }
 
-const althomevar = document.getElementById('althome');
-const althovevardark = althomevar.querySelector('img'); //img inside the btn
+    // Add click event listeners to static page buttons
+    pageButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const page = parseInt(btn.dataset.page);
+            showPage(page);
+        });
+    });
 
-const altbookvar = document.getElementById('altbook');
-const altbookvardark = altbookvar.querySelector('img'); //img inside the btn
+    // Function to handle page jump
+    function goToPage() {
+        const page = parseInt(pageInput.value);
+        if (page >= 1 && page <= totalPages) {
+            showPage(page);
+        } else {
+            // Optionally, reset to current page if input is invalid
+            showPage(1); // or reset to 1
+        }
+    }
 
-const altlocvar = document.getElementById('altloc');
-const altlocvardark = altlocvar.querySelector('img'); //img inside the btn
+    // Add click listener for 'Go' button
+    if (pageGoBtn) {
+        pageGoBtn.addEventListener("click", goToPage);
+    }
 
-const loginunder = document.getElementById('login_under');
-const darkloginunder = loginunder.querySelector('img'); //img inside the btn
+    // Add keypress listener for 'Enter' in input
+    if (pageInput) {
+        pageInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault(); // Stop form submission
+                goToPage();
+            }
+        });
+    }
 
-const signupunder = document.getElementById('signup_under');
-const darksignupunder = signupunder.querySelector('img'); //img inside the btn
-
-const menuhanb = document.getElementById('act_hamb');
-const darkmenuhanb = menuhanb.querySelector('img'); //img inside the btn
-
-dark.addEventListener('click', () => {
-  // toggle dark theme
-  document.body.classList.toggle('dark-theme');
-
-  // check if dark theme is active
-  const isDark = document.body.classList.contains('dark-theme');
-
-  // change image accordingly
-  if (isDark) {
-    darkImg.src = 'imgs/sunw.png';  //sun icon
-    darkImg.alt = 'SunLight';
-
-    darklog.src = 'imgs/loginw.png';  //sun icon
-    darklog.alt = 'LogLight';
-
-    darkreg.src = 'imgs/signupb.png';  //sun icon
-    darkreg.alt = 'SignLight';
-
-    darkhome.src = 'imgs/homeb.png';  //home icon
-    darkhome.alt = 'HomeDark';
-
-    darkbook.src = 'imgs/searchb.png';  //book icon
-    darkbook.alt = 'BookDark';
-
-    darksave.src = 'imgs/saveb.png';  //save icon
-    darksave.alt = 'ArrwDark';
-
-    althovevardark.src = 'imgs/homew.png';  //home icon
-    althovevardark.alt = 'AltHomeLight';
-
-    altbookvardark.src = 'imgs/searchw.png';  //book icon
-    altbookvardark.alt = 'AltBookLight';
-
-    altlocvardark.src = 'imgs/savew.png';  //save icon
-    altlocvardark.alt = 'AltLocLight';
-
-    darkloginunder.src = 'imgs/loginw.png';  //login icon
-    darkloginunder.alt = 'LogunderWhite';
-
-    darksignupunder.src = 'imgs/signupb.png';  //signup icon
-    darksignupunder.alt = 'Signupunderwhite';
-
-    darkmenuhanb.src = 'imgs/menuw.png';  //close icon
-    darkmenuhanb.alt = 'menuWhite';
-  } else {
-    darkImg.src = 'imgs/moonb.png'; // switch back to moon
-    darkImg.alt = 'MoonDark';
-
-    darklog.src = 'imgs/loginb.png';  //switch back to black log
-    darklog.alt = 'LogDark';
-
-    darkreg.src = 'imgs/signupw.png';  //switch back to white signup
-    darkreg.alt = 'RegDark';
-
-    darkhome.src = 'imgs/homew.png';  //switch back to white home
-    darkhome.alt = 'HomeDark';
-
-    darkbook.src = 'imgs/searchw.png';  //switch back to white book
-    darkbook.alt = 'BookDark';
-
-    darksave.src = 'imgs/savew.png';  //switch back to white save
-    darksave.alt = 'ArrwDark';
-
-    althovevardark.src = 'imgs/homeb.png';  //switch back to black home
-    althovevardark.alt = 'AltHomeDark';
-
-    altbookvardark.src = 'imgs/searchb.png';  //switch back to black book
-    altbookvardark.alt = 'AltBookDark';
-
-    altlocvardark.src = 'imgs/saveb.png';  //switch back to black save
-    altlocvardark.alt = 'AltLocDark';
-
-    darkloginunder.src = 'imgs/loginb.png';  //switch back to black login
-    darkloginunder.alt = 'LogunderBlack';
-
-    darksignupunder.src = 'imgs/signupw.png';  //switch back to white signup
-    darksignupunder.alt = 'SignupunderWhite';
-
-    darkmenuhanb.src = 'imgs/menub.png';  //switch back to black menu
-    darkmenuhanb.alt = 'menuBlack';
-  }
-});
-
-const loginboxShadow = document.getElementById('loginboxShadow');
-const login = document.getElementById('login');
-const loginClosebtn = document.getElementById('loginClosebtn');
-
-login.addEventListener('click', () => {
-  document.body.classList.add('show');
-  document.body.style.overflow = 'hidden';
-});
-loginClosebtn.addEventListener('click', () => {
-  document.body.classList.remove('show');
-  document.body.style.overflow = '';  
-});
-
-const signupboxShadow = document.getElementById('signupboxShadow');
-const signup = document.getElementById('signup');
-const signupClosebtn = document.getElementById('signupClosebtn');
-
-signup.addEventListener('click', () => {
-  document.body.classList.add('showsign');
-  document.body.style.overflow = 'hidden';
-});
-signupClosebtn.addEventListener('click', () => {
-  document.body.classList.remove('showsign');
-  document.body.style.overflow = '';  
-});
-
-const loginboxShadow_under = document.getElementById('loginboxShadow');
-const login_under = document.getElementById('login_under');
-const loginClosebtn_under = document.getElementById('loginClosebtn');
-
-login_under.addEventListener('click', () => {
-  document.body.classList.add('show');
-  document.body.style.overflow = 'hidden';
-});
-loginClosebtn_under.addEventListener('click', () => {
-  document.body.classList.remove('show');
-  document.body.style.overflow = '';  
-});
-
-const signupboxShadow_under = document.getElementById('signupboxShadow');
-const signup_under = document.getElementById('signup_under');
-const signupClosebtn_under = document.getElementById('signupClosebtn');
-
-signup_under.addEventListener('click', () => {
-  document.body.classList.add('showsign');
-  document.body.style.overflow = 'hidden';
-});
-signupClosebtn.addEventListener('click', () => {
-  document.body.classList.remove('showsign');
-  document.body.style.overflow = '';  
-});
-
-const act_hamb = document.getElementById('act_hamb');
-const switchclose = act_hamb.querySelector('img');
-
-act_hamb.addEventListener('click', () => {
-  // toggle the state
-  document.body.classList.toggle('closeChange');
-
-  // check if menu is closed/open after toggling
-  const closed = document.body.classList.contains('closeChange');
+    // Show the first page initially
+    showPage(1);
 });
