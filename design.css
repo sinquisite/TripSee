@@ -18,7 +18,7 @@ header{
 
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(8px);
-    z-index: 1;
+    z-index: 1000;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -171,9 +171,14 @@ header{
 }
 
 
+/* CORECTAT: Stiluri adăugate pentru .section2, similar cu .section4 */
 .section2{
-    margin-top: 5.5rem;
-    margin-bottom: 1rem;
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+    padding: 2.5rem 0rem;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 5px 0px 20px #EDEDED, -5px 0px 20px #EDEDED, 0px 5px 20px #EDEDED;
 }
 .section2 h1{
     font-size: 2.5rem;
@@ -291,9 +296,8 @@ header{
     border: none;
     border-radius: 15px;
 
-    box-shadow: 5px 0px 20px #EDEDED;
-    box-shadow: -5px 0px 20px #EDEDED;
-    box-shadow: 0px 5px 20px #EDEDED;
+    /* CORECTAT: Sintaxa box-shadow corectată (virgule în loc de reguli separate) */
+    box-shadow: 5px 0px 20px #EDEDED, -5px 0px 20px #EDEDED, 0px 5px 20px #EDEDED;
 }
 .section4 h1{
     font-size: 2.5rem;
@@ -473,7 +477,7 @@ footer{
     justify-content: center;
     align-items: center;
 
-    z-index: 2; 
+    z-index: 1000; /* Asigurat că e peste header */
 
     opacity: 0;
     pointer-events: none;
@@ -709,7 +713,7 @@ footer{
     justify-content: center;
     align-items: center;
 
-    z-index: 2; 
+    z-index: 1000; /* Asigurat că e peste header */
 
     opacity: 0;
     pointer-events: none;
@@ -943,11 +947,16 @@ footer{
     background-color: rgba(0, 0, 0, 0.5);
     color: #FFFFFF;
 }
-.dark-theme .section4{
-    box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.8);
-    box-shadow: -5px 0px 20px rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.8);
 
+/* CORECTAT: Stiluri adăugate pentru .dark-theme .section2 */
+.dark-theme .section2 {
+    box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.8), -5px 0px 20px rgba(0, 0, 0, 0.8), 0px 5px 20px rgba(0, 0, 0, 0.8);
+    background: #0A0F23;
+}
+
+.dark-theme .section4{
+    /* CORECTAT: Sintaxa box-shadow corectată */
+    box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.8), -5px 0px 20px rgba(0, 0, 0, 0.8), 0px 5px 20px rgba(0, 0, 0, 0.8);
     background: #0A0F23;
 }
 .dark-theme #map{
@@ -997,7 +1006,13 @@ footer{
 .dark-theme #destinations:hover{
     color: rgb(0, 0, 0);
 }
-
+.dark-theme .card{
+    border: 1px solid #2C3A63;
+}
+.card .top p{
+    color: #FFFFFF;
+    font-size: 20px;
+}
 
 /*-----------------------------------------------------------HOVERING & SHI---------------------------------------------------------------------*/
 
@@ -1107,6 +1122,265 @@ footer{
 }
 .box{
   display: none;
+}
+
+
+/* Stiluri pentru Carusel (adaugat din design_booking.css) */
+:root{
+  --card-w: 20rem;
+  --card-h: 28rem;
+  --gap: -9rem;       /* horizontal gap between centers of cards */
+  --center-scale: 1.10;
+  --transition: 500ms cubic-bezier(.22,.9,.35,1);
+}
+
+.carousel_center{
+  width: 70rem; /* wide enough to show partial side cards */
+  max-width: calc(100% - 2rem);
+  margin: 3rem auto;
+  position: relative;
+  height: var(--card-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.the_cards{
+  position: relative;
+  width: 100%;
+  height: var(--card-h);
+  display: block;
+  pointer-events: none; /* cards themselves will control pointer-events by class */
+}
+
+/* Generic card base (all four cards share same look) */
+.the_cards .card{
+  --bg-img: url('imgs/cardbg.jpg');
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: 15px;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* baseline centered */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform var(--transition), opacity var(--transition), z-index var(--transition);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Top area with background image (same bg for all cards) */
+.the_cards .card .top{
+  height: 6rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  font-size: 1.15rem;
+}
+
+/* Middle & bottom */
+.the_cards .card .middle{
+  padding: 0.9rem 1rem;
+  text-align:center;
+  color: rgba(0,0,0,0.7);
+  margin-top: 1.8rem;
+}
+.the_cards .card .middle h4{
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  color: #000;
+}
+.the_cards .card .bottom{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top: 1rem;
+}
+.the_cards .card .bottom button{
+  padding: 0.4rem 2.5rem;
+  border-radius: 12px;
+  border:none;
+  background: linear-gradient(135deg,#FF7E29,#FFAE42);
+  color:#FFFFFF;
+  cursor:pointer;
+  pointer-events: auto;
+  transition: transform 150ms ease;
+}
+.the_cards .card .bottom button:hover{ transform: scale(1.05); box-shadow: 0px 0px 15px rgba(255, 126, 41, 0.4);}
+
+/* State classes: center, left, right, hidden-left, hidden-right */
+.the_cards .card.center{
+  transform: translateX(-50%) scale(var(--center-scale));
+  z-index: 4;
+  opacity: 1;
+  pointer-events: auto; /* center interactive (button clickable) */
+}
+
+.the_cards .card.left{
+  transform: translateX(calc(-50% - (var(--card-w) + var(--gap)))) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
+.the_cards .card.right{
+  transform: translateX(calc(-50% + (var(--card-w) + var(--gap)))) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
+/* fade/slide niceties */
+.the_cards .card{ will-change: transform, opacity; }
+
+/* Arrow buttons */
+.carousel-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(255,255,255,0.95);
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  z-index: 10;
+}
+.carousel-arrow.left{ left: 6rem; }
+.carousel-arrow.right{ right: 6rem; }
+
+.carousel-arrow i{ font-size: 1rem; color:#222; }
+
+/* disable selection while sliding */
+.the_cards .card, .carousel-arrow { user-select: none; }
+
+/* Small screens adjustments */
+@media (max-width: 900px){
+  .carousel_center{ width: 100%; }
+  .carousel-arrow.left{ left: 0.2rem; } .carousel-arrow.right{ right: 0.2rem; }
+}
+
+/* Tabs above carousel */
+.carousel-tabs{
+  display:flex;
+  justify-content:center;
+  gap: 0.6rem;
+  margin: 1rem auto 0;
+}
+.tab-btn{
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: transparent;
+  cursor:pointer;
+  font-weight:600;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.tab-btn:hover{ transform: translateY(-2px); }
+
+/* Active tab uses the same gradient */
+.tab-btn.active{
+  color: white;
+  background: linear-gradient(135deg,#FF7E29,#FFAE42);
+  box-shadow: 0 8px 24px rgba(255,126,41,0.18);
+}
+
+/* show/hide groups */
+.the_cards{ pointer-events: none; } /* default */
+.the_cards.active{
+  pointer-events: auto;
+  opacity: 1;
+}
+.the_cards[aria-hidden="true"]{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute; /* keep layout stable underneath arrows */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.bottom a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.dark-theme .bottom a{
+    color: #000;
+}
+
+/* Dark Theme pentru Carusel */
+.dark-theme .carousel-tabs .tab-btn{
+    color: #FFFFFF;
+}
+.dark-theme .card{
+    background: #0A0F23;
+}
+.dark-theme .middle p{
+    color: #FFFFFF;
+}
+.dark-theme .the_cards .card .middle h4{
+    color: #FFFFFF;
+}
+.dark-theme .the_cards .card .bottom button{
+    color: #000;
+}
+.dark-theme .tab-btn{
+    border: 1px solid #2C3A63;
+}
+.dark-theme li{
+    color: #FFFFFF;
+}
+.dark-theme .carousel-arrow.left i,.dark-theme .carousel-arrow.right i{
+    color: #FFFFFF;
+}
+.dark-theme .carousel-arrow.left, .dark-theme .carousel-arrow.right{
+    background: #0A0F23;
+}
+
+
+/* Stiluri pentru Pagina "About Us" */
+.about-section {
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 5px 0px 20px #EDEDED, -5px 0px 20px #EDEDED, 0px 5px 20px #EDEDED;
+    max-width: 60rem; /* Lățime maximă pentru lizibilitate */
+    text-align: center;
+}
+
+.about-section h1 {
+    font-size: 2.5rem;
+    margin: 0px 5px 1.5rem 5px;
+}
+
+.about-section p {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: left; /* Aliniere stânga pentru lizibilitate */
+    padding: 0 2rem; /* Spațiere interioară */
+}
+
+/* Dark theme pentru "About Us" */
+.dark-theme .about-section {
+    background: #0A0F23;
+    box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.8), -5px 0px 20px rgba(0, 0, 0, 0.8), 0px 5px 20px rgba(0, 0, 0, 0.8);
+}
+
+.dark-theme .about-section p {
+    color: #E0E0E0;
 }
 
 
@@ -1365,4 +1639,48 @@ footer{
     }
     .nontap{
         color: #000;
-    }}
+    }
+    
+    /* Stiluri Media Query pentru Carusel (adaugat din design_booking.css) */
+    :root{
+      --card-w: 20rem;
+      --card-h: 30rem;
+    }
+    .carousel_center {
+        overflow: hidden;
+    }
+    .the_cards .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+    }
+    .the_cards .card .middle,
+    .the_cards .card .bottom {
+        margin-top: 0.5rem; 
+    }
+    .the_cards .card .bottom {
+        padding-bottom: 1rem;
+    }
+    .card .middle p{
+      padding: 0 2rem;
+    }
+    .card .middle li{
+      margin: 0 3rem;
+    }
+    .card .bottom{
+      margin-bottom: 1rem;
+    }
+
+    /* Media query for About Us page */
+    .about-section {
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+    .about-section h1 {
+        font-size: 2rem;
+    }
+    .about-section p {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+}
