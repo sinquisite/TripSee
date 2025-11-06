@@ -11,8 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
+    <!-- Am adăugat Font Awesome pentru pictogramele caruselului -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
+    <!-- Scriptul pentru glob a fost eliminat -->
 
 </head>
 <body>
@@ -27,9 +30,10 @@
     
     
     <div class="navbar">
-        <a href="#" id="homenaw"><img src="imgs/homew.png" alt="Home"></a>
-        <a href="booking.html" id="booknaw"><img src="imgs/searchw.png" alt="Book"></a>
-        <a href="destination.html" id="savenaw"><img src="imgs/savew.png" alt="Saved"></a>
+        <a href="index.html" id="homenaw"><img src="imgs/homew.png" alt="Home"></a>
+        <!-- Linkul către booking.html (booknaw) a fost eliminat -->
+        <!-- Pictograma pentru savenaw a fost schimbată cu cea de search -->
+        <a href="destination.html" id="savenaw"><img src="imgs/searchw.png" alt="Search"></a>
     </div>
 
     <div class="btns">
@@ -50,8 +54,8 @@
         <div class="bg-hamb">
             <div class="hamb_nav">
 
-                <div><a href="#" id="althome"><img src="imgs/homeb.png" alt="Home" >Home</a></div>
-                <div><a href="booking.html" id="altbook"><img src="imgs/searchb.png" alt="Search" >Booking</a></div>
+                <div><a href="index.html" id="althome"><img src="imgs/homeb.png" alt="Home" >Home</a></div>
+                <!-- Linkul către booking.html (altbook) a fost eliminat -->
                 <div><a href="destination.html" id="altloc"><img src="imgs/saveb.png" alt="Save" >Locations</a></div>
 
             </div>
@@ -139,29 +143,136 @@
             <div class="section1">
                 <h1 class="h1color">Discover</h1><h1 class="themeSecondtext">Your Next</h1><br><h1 class="h1color">Adventure</h1>
 
-                <p class="ptext">Book hotels, apartments, and unique stays around the world with<br>confidence and ease</p>
+                <!-- Text actualizat pentru focus pe Moldova -->
+                <p class="ptext">Discover unique stays, local experiences, and amazing destinations<br>around Moldova.</p>
 
-                <button id="book" onclick="window.location.href='booking.html'"><p>Discover Our Plans</p><img src="imgs/arroww.png" alt="Booking"></button>
+                <!-- CORECTAT: Butonul derulează la #plans-section -->
+                <button id="book" onclick="document.getElementById('plans-section').scrollIntoView({ behavior: 'smooth' });"><p>Discover Our Plans</p><img src="imgs/arroww.png" alt="Booking"></button>
                 <button id="destinations" onclick="window.location.href='destination.html'"><p>Explore Destinations</p></button>
             </div>
 
-            <div class="section2">
-                <h1 class="themeSecondtext">Explore</h1><h1 class="h1color">Global Destinations</h1>
-                <p class="ptext2">Interactive map showcasing our worldwide network of accomodations and travel <br>destinations</p>
-
-                <div id="map">
-                    <div id="myglobe"></div>
+            <!-- CORECTAT: Adăugat id="plans-section" pentru ancoră -->
+            <div class="section2" id="plans-section">
+                
+                <!-- TABS / CATEGORIES -->
+                <div class="carousel-tabs">
+                  <button class="tab-btn active" data-cat="packs">Packs</button>
+                  <button class="tab-btn" data-cat="subscriptions">Subscriptions</button>
+                  <button class="tab-btn" data-cat="business">Business</button>
                 </div>
 
-                <div class="box">
-                    <p>Currently the map isn't working for mobile devices!</p>
+                <div class="carousel_center">
+                  <button class="carousel-arrow left" aria-label="Previous"><i class="fa fa-chevron-left"></i></button>
+
+                  
+                  <div class="the_cards active" data-cat="packs">
+                    <div class="card" id="card-1-packs">
+                      <div class="top"><p>Discover Moldova</p></div>
+                      <div class="middle">
+                        <p>
+                          Explore Moldova’s cultural heart — historic villages, old monasteries, and scenic valleys.
+                          Perfect for travelers who want authentic local traditions, nature views, and traditional
+                          Moldovan food in countryside guesthouses.
+                        </p>
+                        <h4>499 MDL</h4>
+                      </div>
+                      <div class="bottom"><button>Buy</button></div>
+                    </div>
+
+                    <div class="card" id="card-2-packs">
+                      <div class="top"><p>Wine & Gourmet</p></div>
+                      <div class="middle">
+                        <p>
+                          Taste Moldova's world-famous wines and visit iconic underground cellars. Enjoy guided tastings,
+                          vineyard walks, and gourmet food experiences - ideal for wine lovers and food explorers.
+                        </p>
+                        <h4>1200 MDL</h4>
+                      </div>
+                      <div class="bottom"><button>Buy</button></div>
+                    </div>
+
+                    <div class="card" id="card-3-packs">
+                      <div class="top"><p>Nature Escape</p></div>
+                      <div class="middle">
+                        <p>
+                          Escape the city and recharge in nature - forests, river trails, and panoramic hill paths.
+                          A calm and refreshing day for hiking lovers and anyone seeking peace and natural beauty.
+                        </p>
+                        <h4>799 MDL</h4>
+                      </div>
+                      <div class="bottom"><button>Buy</button></div>
+                    </div>
+
+                    <div class="card" id="card-4-packs">
+                      <div class="top"><p>Adventure Moldova</p></div>
+                      <div class="middle">
+                        <p>
+                          Adrenaline-filled day with paragliding, ATV trails, river kayaking or rafting, and cliff views.
+                          Designed for thrill-seekers who want an active and exciting outdoor experience.
+                        </p>
+                        <h4>1799 MDL</h4>
+                      </div>
+                      <div class="bottom"><button>Buy</button></div>
+                    </div>
+                  </div>
+
+                  <!-- SUBSCRIPTIONS (3 placeholders for you to fill) -->
+                  <div class="the_cards" data-cat="subscriptions" aria-hidden="true">
+                    <div class="card">
+                      <div class="top"><p>Premium</p></div>
+                      <div class="middle">
+                        <li>Remove all ads</li>
+                        <li>Gives early access to trip deals and discounts</li>
+                        <li>Priority support for simple bookings</li>
+                        <h4>399 MDL</h4>
+                      </div>
+                      <div class="bottom"><button>Subscribe</button></div>
+                    </div>
+
+                    <div class="card">
+                      <div class="top"><p>Explorer+</p></div>
+                      <div class="middle">
+                        <li>Priority Booking on popular activities</li>
+                        <li>Extra deals and seasonal offers</li>
+                        <li>Access to special events and private tours</li>
+                        <h4>499 MDL</h4>
+                      </div>
+                      <div class="bottom"><button>Subscribe</button></div>
+                    </div>
+
+                    <div class="card">
+                      <div class="top"><p>Elite+</p></div>
+                      <div class="middle">
+                        <li>Access to 'member-only' travel suggestions</li>
+                        <li>Unique travel deals</li>
+                        <li>Bonus seasonal perks & partner rewards</li>
+                        <h4>599 MDL</h4>
+                      </div>
+                      <div class="bottom"><button>Subscribe</button></div>
+                    </div>
+                  </div>
+
+                  <!-- BUSINESS (1 card) -->
+                  <div class="the_cards" data-cat="business" aria-hidden="true">
+                    <div class="card">
+                      <div class="top"><p>Business Offer</p></div>
+                      <div class="middle">
+                        <p>Custom business booking and corporate packages. Contact us for pricing and arrangements.</p>
+                        <h4>~Varies~</h4>
+                      </div>
+                      <div class="bottom"><button><a href="mailto:ttripsee@gmail.com" target="_blank">Contact Us</a></button></div>
+                    </div>
+                  </div>
+
+                  <button class="carousel-arrow right" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
                 </div>
                 
             </div>
 
             <div class="section3">
                 <div class="nontapbtns">
-                    <button class="nontap"><img src="imgs/global.png" alt="Global"><h1>Global Coverage</h1><p>Access thousands of properties across 190+ countries <br>worldwide.</p></button>
+                    <!-- Text actualizat pentru focus pe Moldova -->
+                    <button class="nontap"><img src="imgs/global.png" alt="Moldova"><h1>Local Coverage</h1><p>Access properties and unique stays across all<br>regions of Moldova.</p></button>
                     <button class="nontap"><img src="imgs/shield.png" alt="Protection"><h1>Secure Booking</h1><p>Your payments and personal information are always <br>protected.</p></button>
                     <button class="nontap"><img src="imgs/clock.png" alt="Support"><h1>24/7 Support</h1><p>Round-the-clock assistance for all your travel <br>needs.</p></button>
                 </div>
@@ -169,8 +280,10 @@
 
             <div class="section4">
                 <h1 class="themeSecondtext">Ready to Start Your<h1 class="h1color">Journey</h1><h1 class="themeSecondtext">?</h1></h1>
-                <p class="ptext3">Join millions of travelers who trust TripSee for their accommodation needs.</p>
-                <button id="book2" onclick="window.location.href='booking.html'">Check Our Plan Now</button>
+                <!-- Text actualizat pentru focus pe Moldova -->
+                <p class="ptext3">Join thousands of travelers who trust TripSee for their accommodation needs in Moldova.</p>
+                <!-- CORECTAT: Butonul derulează la #plans-section -->
+                <button id="book2" onclick="document.getElementById('plans-section').scrollIntoView({ behavior: 'smooth' });">Check Our Plans Now</button>
             </div>
 
         </div>
@@ -184,17 +297,20 @@
                 <div class="logo-container-footer">
                     <a href="index.html"><img src="imgs/logobw.png" alt="Logo"></a><h1>TripSee</h1>
                 </div>
-                <p>Your trusted partner for seamless travel bookings <br> and unforgettable experiences around the world.</p>
+                <!-- Text actualizat pentru focus pe Moldova -->
+                <p>Your trusted partner for seamless travel bookings <br> and unforgettable experiences around Moldova.</p>
                 <a href="https://www.tiktok.com/@fe.tripsee.srl?_t=ZM-90DwDRxytZ5&_r=1" class="tikt" target="_blank"><img src="imgs/tt.png" alt=""></a>
                 <a href="https://www.instagram.com/fe_tripsee_srl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="ins" target="_blank"><img src="imgs/insta.png" alt=""></a>
             </div>
             <div class="quicklinks">
                 <h1>Quick Links</h1>
                 <div class="links">
-                    <a href="#">Home</a>
-                    <a href="booking.html">Book now</a>
+                    <a href="index.html">Home</a>
+                    <!-- CORECTAT: Link-ul derulează la #plans-section -->
+                    <a href="#plans-section" onclick="event.preventDefault(); document.getElementById('plans-section').scrollIntoView({ behavior: 'smooth' });">Subscriptions</a>
                     <a href="destination.html">Destinations</a>
-                    <a href="#">About us</a>
+                    <!-- CORECTAT: Link-ul trimite la about.html -->
+                    <a href="about.html">About us</a>
                 </div>
             </div>
             <div class="services">
@@ -227,57 +343,118 @@
         </div>
     </footer>
 
-    <script type="module">
+    <!-- Scriptul pentru glob a fost eliminat -->
+    
+    <!-- Scriptul pentru carusel (luat din booking.html) -->
+    <script>
+    (function(){
+      // categories and per-category current index
+      const cats = ['packs','subscriptions','business'];
+      const currentIndex = { packs: 0, subscriptions: 0, business: 0 };
+      let activeCat = 'packs';
 
-        import * as THREE from 'https://esm.sh/three';
+      // DOM refs
+      const tabs = document.querySelectorAll('.carousel-tabs .tab-btn');
+      const groups = Array.from(document.querySelectorAll('.the_cards'));
+      const leftBtn = document.querySelector('.carousel-arrow.left');
+      const rightBtn = document.querySelector('.carousel-arrow.right');
 
-        const mapEl = document.getElementById('map');
-        const globeEl = document.getElementById('myglobe');
+      // helper: get group element by cat
+      function groupEl(cat){
+        return document.querySelector(`.the_cards[data-cat="${cat}"]`);
+      }
 
+      // render one category (positions its cards)
+      function renderCategory(cat){
+        const group = groupEl(cat);
+        if(!group) return;
+        const cards = Array.from(group.querySelectorAll('.card'));
+        const total = cards.length;
+        let current = currentIndex[cat] % total;
+        if(current < 0) current += total;
 
-        const world = new Globe(globeEl)
-          .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
-          .bumpImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png')
-          .backgroundImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png');
+        // clear classes on this group's cards
+        cards.forEach(c => c.classList.remove('center','left','right','hidden-left','hidden-right'));
 
-
-        function resizeGlobeToMap() {
-          const r = mapEl.getBoundingClientRect();
-          //tell globe.gl the exact pixel size it should render at
-          world.width(Math.round(r.width));
-          world.height(Math.round(r.height));
+        for(let i=0;i<total;i++){
+          const el = cards[i];
+          const pos = (i - current + total) % total;
+          if(pos === 0) el.classList.add('center');
+          else if(pos === 1) el.classList.add('right');
+          else if(pos === total - 1) el.classList.add('left');
+          else if(pos <= Math.floor(total/2)) el.classList.add('hidden-right');
+          else el.classList.add('hidden-left');
         }
 
-        resizeGlobeToMap();
-        //sync on resize
-        window.addEventListener('resize', resizeGlobeToMap, { passive: true });
-
-        //center the globe visually on x & y
-        world.pointOfView({ lat: 0, lng: 0, altitude: 2.2 }, 0);
-
-        //disable scroll/zoom
-        try {
-          const controls = world.controls(); 
-          if (controls) {
-            controls.enableZoom = false;
-            controls.enablePan  = true;
-            controls.enableZoom = false;
-          }
-        } catch (e) {
-          console.warn('controls not accessible in this build of globe.gl — scroll zoom may still work', e);
-        }
-
-        const globeMaterial = world.globeMaterial();
-        globeMaterial.bumpScale = 10;
-        new THREE.TextureLoader().load('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-water.png', texture => {
-          globeMaterial.specularMap = texture;
-          globeMaterial.specular = new THREE.Color('gray');
-          globeMaterial.shininess = 15;
+        // ensure center card is pointer-enabled
+        cards.forEach(c => {
+          if(c.classList.contains('center')) c.style.pointerEvents = 'auto';
+          else c.style.pointerEvents = 'auto'; // we allow clicking side cards to change focus
         });
+      }
 
-        const directionalLight = world.lights().find(light => light.type === 'DirectionalLight');
-        if (directionalLight) directionalLight.position.set(1, 1, 1);
-        
+      // render active group and hide others
+      function setActiveCategory(cat){
+        activeCat = cat;
+        // tabs active state
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
+        // show/hide groups
+        groups.forEach(g => {
+          const isThis = g.dataset.cat === cat;
+          g.classList.toggle('active', isThis);
+          g.setAttribute('aria-hidden', isThis ? 'false' : 'true');
+        });
+        // render the newly active group
+        renderCategory(cat);
+      }
+
+      // navigation
+      function next(){
+        currentIndex[activeCat] = currentIndex[activeCat] + 1;
+        renderCategory(activeCat);
+      }
+      function prev(){
+        currentIndex[activeCat] = currentIndex[activeCat] - 1;
+        renderCategory(activeCat);
+      }
+
+      // wire tab clicks
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          setActiveCategory(tab.dataset.cat);
+        });
+      });
+
+      // wire arrows
+      if(leftBtn) leftBtn.addEventListener('click', prev);
+      if(rightBtn) rightBtn.addEventListener('click', next);
+
+      // clicking on any card (in any group) will make it the center for its group
+      groups.forEach(group => {
+        const cat = group.dataset.cat;
+        const cards = Array.from(group.querySelectorAll('.card'));
+        cards.forEach((card, i) => {
+          card.addEventListener('click', () => {
+            // set that group's current index and, if desired, switch view to it
+            currentIndex[cat] = i;
+            // if clicked group is not active, switch to it
+            if(activeCat !== cat) setActiveCategory(cat);
+            else renderCategory(cat);
+          });
+        });
+      });
+
+      // keyboard navigation for active group
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'ArrowLeft') prev();
+        if(e.key === 'ArrowRight') next();
+      });
+
+      // initial setup
+      setActiveCategory(activeCat);
+      // render all groups once to set initial classes (so hidden ones keep consistent positions)
+      cats.forEach(c => renderCategory(c));
+    })();
     </script>
     <script src="scr.js"></script>
     
