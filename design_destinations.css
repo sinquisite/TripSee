@@ -317,6 +317,173 @@
     background-color: #e0e0e0;
 }
 
+/*=========================== MODAL STYLES =======================================*/
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: #FFFFFF;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 50rem; /* 800px */
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    
+    /* Animation */
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: rotate(90deg);
+}
+
+.modal-image {
+    flex-basis: 50%;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    min-height: 25rem; /* Minimum height for the image area */
+}
+
+.modal-info {
+    flex-basis: 50%;
+    flex-shrink: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    color: #333;
+}
+
+.modal-info h2 {
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.modal-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-locat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    flex-shrink: 1;
+    min-width: 0; /* Fix flex overflow */
+}
+.modal-locat p {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.modal-locat i {
+    color: #FF7E29;
+    flex-shrink: 0;
+}
+
+.modal-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+    padding-left: 1rem;
+}
+.modal-rating i {
+    color: #f0c000;
+}
+.modal-rating p {
+    margin: 0;
+}
+
+.modal-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Modal Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        flex-direction: column;
+        width: 90%;
+        max-width: 30rem; /* 480px */
+    }
+    .modal-image {
+        flex-basis: 15rem; /* Fixed height for image on mobile */
+        min-height: 15rem;
+    }
+    .modal-info {
+        flex-basis: auto;
+        padding: 1.5rem;
+    }
+    .modal-info h2 {
+        font-size: 1.5rem;
+    }
+    .modal-description {
+        font-size: 0.95rem;
+    }
+}
+
+
 /*===========================RESPONSIVE=======================================*/
 
 /* Add media query for smaller screens */
@@ -479,6 +646,37 @@ body.dark-theme #page-go-btn {
 
 body.dark-theme #page-go-btn:hover {
     background-color: #2C3A63;
+}
+
+/* Dark Theme Modal */
+body.dark-theme .modal-content {
+    background: #0A0F23;
+    border: 1px solid #2C3A63;
+    color: #E0E0E0;
+}
+
+body.dark-theme .modal-close-btn {
+    background: rgba(44, 58, 99, 0.8); /* #2C3A63 with opacity */
+    color: #E0E0E0;
+}
+body.dark-theme .modal-close-btn:hover {
+    background: #2C3A63;
+}
+
+body.dark-theme .modal-info {
+    color: #E0E0E0;
+}
+body.dark-theme .modal-info h2 {
+    color: #FFFFFF;
+}
+body.dark-theme .modal-details {
+    border-color: #1A2547;
+}
+body.dark-theme .modal-locat {
+    color: #E0E0E0;
+}
+body.dark-theme .modal-description {
+    color: #E0E0E0;
 }
 
 
